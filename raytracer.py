@@ -147,9 +147,9 @@ def render(scene, do_reflect=False):
 	height = 512
 	img = np.zeros(shape=(width, height, 3), dtype=np.float32)
 
-	for i in range(width):
-		for j in range(height):
-			img[j][i] = scene.background
+	# for i in range(width):
+	# 	for j in range(height):
+	# 		img[j][i] = scene.background
 
 	# Camera basis vectors
 	# W grows out of the screen, so its the opposite of the gaze direction
@@ -165,8 +165,8 @@ def render(scene, do_reflect=False):
 	top = 1 
 	bottom = -1;
 
-	for j in range(height):
-		for i in range(width):
+	for i in range(width):
+		for j in range(height):
 			# Rays are cast through "target points" on a plane that sits in front of the camera.
 			# Each point represents a specific pixel on screen.
 			# Here we define each coordinate of each point in terms of camera space.

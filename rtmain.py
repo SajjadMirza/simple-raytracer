@@ -5,6 +5,7 @@ import vectormath as vm
 from vectormath import Vector3
 from pprint import pprint
 from PIL import Image
+import time
 
 # Project imports
 import raytracer as rt
@@ -88,10 +89,16 @@ def main():
 	args = parser.parse_args()
 	scene = example_scene()
 	#scene = simplest_scene()
+	render_start = time.perf_counter()
 	img_data = rt.render(scene, do_reflect=args.reflect)
+	render_end = time.perf_counter()
+	print('Rendering time: {}s'.format(render_end - render_start))
 	#print(img_data)
+	img_start = time.perf_counter()
 	img = Image.fromarray(np.uint8(img_data*255))
 	img.save(args.out)
+	img_end = time.perf_counter()
+	print('Image conversion/saving time: {}s'.format(img_end - img_start))
 
 if __name__ == '__main__':
 	main()
